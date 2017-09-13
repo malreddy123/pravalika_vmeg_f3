@@ -31,9 +31,9 @@ public class StudentGroup implements GroupOperationService {
 
 	@Override
 	public void setStudent(Student student, int index) {
-           this.getStudents()[index] = student;
+           
+this.getStudents()[index] = student;
 	}
-
 	@Override
 	public void addFirst(Student student) {
          Student[] temp = new Student[this.students.length+1];
@@ -125,36 +125,36 @@ public class StudentGroup implements GroupOperationService {
 
 	@Override
 	public Student[] getByBirthDate(Date date) {
-           ArrayList<Student> temp = new ArrayList<>();
+           ArrayList<Student> temp1 = new ArrayList<>();
 		   for(Student s : this.students)
 		   {
 		       if(s.getBirthDate().compareTo(date) == 0)
-				   temp.add(s);
+				   temp1.add(s);
 		   }
-		   return  temp.toArray(new Student[temp.size()]);
+		   return  temp1.toArray(new Student[temp1.size()]);
 	}
 
 	@Override
 	public Student[] getBetweenBirthDates(Date firstDate, Date lastDate) {
-         ArrayList<Student> temp = new ArrayList<>();
+         ArrayList<Student> temp1= new ArrayList<>();
 		   for(Student s : this.students)
 		   {
 		       if(s.getBirthDate().after(firstDate) && s.getBirthDate().before(lastDate))
-				   temp.add(s);
+				   temp1.add(s);
 		   }
-		   return  temp.toArray(new Student[temp.size()]); 
+		   return  temp1.toArray(new Student[temp1.size()]); 
 	}
 
 	@Override
 	public Student[] getNearBirthDate(Date date, int days) {
-           ArrayList<Student> temp = new ArrayList<>();
+           ArrayList<Student> temp1 = new ArrayList<>();
 		   Calendar cal = getCalendar(date);
 		   cal.add(Calendar.DATE, days);
            date = cal.getTime();
 		   for(Student s : this.students)
 		   {
 		       if(s.getBirthDate().before(date))
-				   temp.add(s);
+				   temp1.add(s);
 		   }
 		   return  temp.toArray(new Student[temp.size()]); 
 	}
@@ -168,10 +168,10 @@ public class StudentGroup implements GroupOperationService {
 	@Override
 	public Student[] getStudentsByAge(int age) {
           ArrayList<Student> temp = new ArrayList<>();
-		  for(int i = 0; i < this.students.length; i++)
+		  for(int j = 0; j < this.students.length; j++)
 		  {
 		      if(getCurrentAgeByDate(i) == age)
-				  temp.add(this.students[i]);
+				  temp.add(this.students[j]);
 		  }
           return  temp.toArray(new Student[temp.size()]);
 	}
@@ -181,36 +181,36 @@ public class StudentGroup implements GroupOperationService {
           double maxavg = 0;
 		  for(Student s : this.students)
 			  if(s.getAvgMark() > maxavg) maxavg = s.getAvgMark();
-		  ArrayList<Student> temp = new ArrayList<>();
+		  ArrayList<Student> temp1 = new ArrayList<>();
 		  for(Student s : this.students)
-			  if(s.getAvgMark() == maxavg)  temp.add(s);
-		  return  temp.toArray(new Student[temp.size()]);
+			  if(s.getAvgMark() == maxavg)  temp1.add(s);
+		  return  temp1.toArray(new Student[temp1.size()]);
 	}
 
 	@Override
 	public Student getNextStudent(Student student) {
            this.bubbleSort();
-		   int i;
-		   for(i = 0; i < this.students.length; i++)
-			   if(this.students[i].equals(student)) break;
-		   return this.students[i+1];
+		   int j;
+		   for(j = 0; j < this.students.length; j++)
+			   if(this.students[j].equals(student)) break;
+		   return this.students[j+1];
 
 	}
 
 	@Override
 	public void add(Student student, int index) {
-         Student[] temp = new Student[this.students.length+1];
-		 for(int i = 0; i < index; i++)
-			 temp[i] = this.students[i];
-		 temp[index] = student;
-		 for(int i = index; i < this.students.length; i++)
-			 temp[i+1] = this.students[i];
-		 this.students = temp;
+         Student[] temp1 = new Student[this.students.length+1];
+		 for(int j = 0; j < index; j++)
+			 temp1[j] = this.students[j];
+		 temp1[index] = student;
+		 for(int j = index; j < this.students.length; j++)
+			 temp1[j+1] = this.students[j];
+		 this.students = temp1;
 	}
 
 	private int getStudentIndex(Student student) {
-         for(int i = 0; i < this.students.length; i++)
-			 if(this.students[i].equals(student)) return i;
+         for(int j = 0; j < this.students.length; j++)
+			 if(this.students[j].equals(student)) return j;
 		 return -1;
     }
 
